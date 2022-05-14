@@ -1,0 +1,1037 @@
+openapi: 3.0.3
+info:
+  title: Restaurant Manager API
+  description: Restaurant Manager REST API for UI use
+  version: 1.0.0
+tags:
+  - name: users-v1
+servers:
+  - url: http://localhost:8085
+
+paths:
+  /ui/users:
+    get:
+      tags:
+        - users-v1
+      summary: List of users
+      operationId: getUserList
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          example: 1
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          description: User count on page
+          example: 25
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: Sort criteria (can have multiple declarations)(id, firstName, lastName, outlet)
+          example: outlet,asc
+          schema:
+            type: array
+            items:
+              type: string
+        - name: id
+          in: query
+          description: Filter criteria (can have multiple declarations)
+          example: 123
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: surname
+          in: query
+          description: Filter criteria (can have multiple declarations)
+          example: Ivanov
+          schema:
+            type: array
+            items:
+              type: string
+        - name: firstName
+          in: query
+          description: Filter criteria (can have multiple declarations)
+          example: Alex
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageView'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    post:
+      tags:
+        - users-v1
+      summary: Creating new users
+      operationId: postUser
+      requestBody:
+        description: Callback payload
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+  /ui/users/{userId}:
+    get:
+      tags:
+        - users-v1
+      summary: Information about concrete user
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: User identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    put:
+      tags:
+        - users-v1
+      summary: User updating
+      operationId: updateUser
+      parameters:
+        - name: userId
+          in: path
+          description: Id for user updating
+          required: true
+          schema:
+            type: number
+            format: int64
+      requestBody:
+        description: Callback payload
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/UserDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+    delete:
+      tags:
+        - users-v1
+      summary: User deletion
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: Id for user updating
+          required: true
+          schema:
+            type: number
+            format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      security:
+        - bearerAuth: [ ]
+
+components:
+  schemas:
+
+    Permission:
+      type: string
+      description: User permissions info
+      enum:
+        - ADMINISTRATOR
+        - GENERAL_MANAGER
+        - FOOD_AND_BEVERAGE_DEPARTMENT
+        - ACCOUNTING_DEPARTMENT
+        - STORAGE_DEPARTMENT
+        - RESTAURANT_MANAGER
+        - ASSISTANT_MANAGER
+        - HEAD_WAITER
+        - CASHIER
+        - WAITER
+
+    OrderStatus:
+      type: string
+      description: Order statuses
+      enum:
+        - PUBLISHED
+        - EDITED
+        - DIVIDED
+        - CLOSED
+        - PARTIAL_PAID
+        - FULLY_PAID
+
+    MenuItemStatus:
+      type: string
+      description: Menu item statuses
+      enum:
+        - IN_STOCK
+        - ROLLING_OUT
+        - DOES_NOT_EXIST
+
+    UnitName:
+      type: string
+      description: Menu item statuses
+      enum:
+        - Liter
+        - Milliliter
+        - Kilogram
+        - Gram
+        - Pack
+        - Bottle
+
+    PageView:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+          example: 1000
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+
+    UserDto:
+      type: object
+      description: User info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        firstName:
+          type: string
+          example: David
+        lastName:
+          type: string
+          example: Mondel
+        credential:
+          $ref: '#/components/schemas/CredentialDto'
+        outletName:
+          type: string
+          example: LaSpiga
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+      example:
+        userId: 186
+        firstName: David
+        lastName: Mondel
+        outletName: LaSpiga
+        isDeleted: false
+        creationDate: 2020-5-19
+        changingDate: 2020-6-20
+
+    CredentialDto:
+      type: object
+      description: User credentials info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        username:
+          type: string
+          example: herbert_stevenson
+        password:
+          type: string
+          format: password
+        role:
+          $ref: '#/components/schemas/RoleDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+      example:
+        id: 186
+        username: herbert_stevenson
+        isDeleted: false
+        creationDate: 2020-5-19
+        changingDate: 2020-6-20
+
+    RoleDto:
+      type: object
+      description: User role info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: accounting_specialist
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/CredentialDto'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+      example:
+        id: 186
+        name: accounting_specialist
+
+    OutletDto:
+      type: object
+      description: Outlet info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: La Spiga
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderDto'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+        ingredientStorage:
+          $ref: '#/components/schemas/IngredientStorageDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+          example: 2020-5-19
+        changingDate:
+          type: string
+          format: date
+          example: 2020-6-20
+      example:
+        id: 186
+        name: La Spiga
+        isDeleted: false
+        creationDate: 2020-5-19
+        changingDate: 2020-6-20
+
+    OrderDto:
+      type: object
+      description: Order info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        userInfo:
+          type: string
+          example: 'David Valter - Waiter'
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemDto'
+        customerNumber:
+          type: integer
+          format: int64
+          example: 186
+        tableNumber:
+          type: integer
+          format: int64
+          example: 16
+        companyDiscount:
+          $ref: '#/components/schemas/CompanyDiscountDto'
+        itemDiscount:
+          $ref: '#/components/schemas/ItemDiscountDto'
+        totalCost:
+          type: number
+          format: double
+          example: "1200.00"
+        orderStatusRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderStatusRecordDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+      example:
+        id: 2589
+        userInfo: David Valter - Waiter
+        customerNumber: 2
+        tableNumber: 12
+        totalCost: 1298.00
+        isDeleted: false
+        createdDate: 2020-12-5
+        changingDate: 2020-12-19
+
+    OrderItemDto:
+      type: object
+      description: Order item info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: La Spiga
+        orderedAmount:
+          type: integer
+          format: int64
+          example: 1
+        totalCost:
+          type: number
+          format: double
+          example: "1200.00"
+      example:
+        id: 234
+        name: Pasta Arabiata
+        orderedAmount: 2
+        totalCost: 35
+
+    OrderStatusRecordDto:
+      type: object
+      description: Info about stage of order lifecycle
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        orderStatus:
+          type: string
+        creationDate:
+          type: string
+          format: date
+      example:
+        id: 1
+        orderStatus: CREATED
+        creationDate: 2020-1-15 12:25:48
+
+    CompanyDiscountDto:
+      type: object
+      description: Info about company discount
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        companyName:
+          type: string
+          example: Microsoft
+        discountPercentage:
+          type: integer
+          format: int64
+          example: 18
+        discountProof:
+          $ref: '#/components/schemas/DiscountProofDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+      example:
+        id: 12
+        companyName: Microsoft
+        discountPercentage: 12
+        isDeleted: false
+        creationDate: 2020-5-14
+        changingDate: 2020-8-15
+
+    ItemDiscountDto:
+      type: object
+      description: Info about item discount
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        menuItemName:
+          type: string
+          example: Cesar salad
+        amountOfProduct:
+          type: integer
+          format: int64
+          example: 2
+        discountPercentage:
+          type: integer
+          format: int64
+          example: 18
+        discountProof:
+          $ref: '#/components/schemas/DiscountProofDto'
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+      example:
+        id: 23
+        menuItemName: Cesar salad
+        amountOfProduct: 2
+        discountPercentage: 12
+        isDeleted: false
+        creationDate: 2020-9-12
+        changingDate: 2020-9-15
+
+    DiscountProofDto:
+      type: object
+      description: Info about discount proof
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        encodedImage:
+          type: string
+        isDeleted:
+          type: boolean
+          example: false
+        creationDate:
+          type: string
+          format: date
+        changingDate:
+          type: string
+          format: date
+
+    IngredientDto:
+      type: object
+      description: Informaation about ingredient
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Turkey ham
+        unitName:
+          type: string
+          example: Kilogram
+        ingredientGroupName:
+          type: string
+          example: Meat
+      example:
+        id: 186
+        name:  Turkey ham
+        unitName: Kilogram
+        ingredientGroupName: Meat
+
+    IngredientGroupDto:
+      type: object
+      description: Info about group of ingredients
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Meat
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientDto'
+      example:
+        id: 123
+        name: Meat
+
+    MenuItemDto:
+      type: object
+      description: Information about item from menu
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Cesar salad
+        pricePerUnit:
+          type: number
+          format: double
+          example: "120.00"
+        markupPercentage:
+          type: integer
+          format: int64
+          example: 18
+        purchasePricePerUnit:
+          type: number
+          format: double
+          example: "120.00"
+        availableQuantity:
+          type: integer
+          format: int64
+          example: 186
+        outletName:
+          type: string
+          example: LaSpiga
+        recipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipeDto'
+        itemDiscount:
+          $ref: '#/components/schemas/ItemDiscountDto'
+        menuItemGroup:
+          $ref: '#/components/schemas/MenuItemGroupDto'
+        menuItemStatus:
+          type: string
+          example: IN_STOCK
+      example:
+        id: 123
+        name: Cesar salad
+        pricePerUnit: 120.00
+        markupPercentage: 12
+        purchasePricePerUnit: 134.00
+        availableQuantity: 145
+        outletName: LaSpiga
+        menuItemStatus: IN_STOCK
+
+    MenuItemShortInfoDto:
+      type: object
+      description: Short info about menu item specially for menu sheet
+      properties:
+        name:
+          type: string
+          example: Cesar salad
+        pricePerUnit:
+          type: number
+          format: double
+          example: "120.00"
+        menuItemGroup:
+          $ref: '#/components/schemas/MenuItemGroupDto'
+
+    MenuItemGroupDto:
+      type: object
+      description: Info about menu item groups
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Salads
+        menuItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItemShortInfoDto'
+
+    RecipeDto:
+      type: object
+      description: Info about usage of 1 ingredient for different menuItems
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        ingredient:
+          $ref: '#/components/schemas/IngredientDto'
+        menuItem:
+          $ref: '#/components/schemas/MenuItemDto'
+        outlet:
+          $ref: '#/components/schemas/OutletDto'
+        amountOfIngredient:
+          type: string
+          format: double
+          example: 1123.00
+
+    GeneralReportDto:
+      type: object
+      description: Report with general info
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        outletName:
+          type: string
+          example: La Spiga
+        numberOfOrders:
+          type: integer
+          format: int64
+          example: 820
+        numberOfCustomers:
+          type: integer
+          format: int64
+          example: 1860
+        numberOfUnpaidOrders:
+          type: integer
+          format: int64
+          example: 47
+        dateFrom:
+          type: string
+          format: date
+        dateUntil:
+          type: string
+          format: date
+      example:
+        id: 187
+        outletName: La Spiga
+        numberOfOrders: 123
+        numberOfCustomers: 128
+        numberOfUnpaidOrders: 4
+        dateFrom: 2020-2-10 12:25:48
+        dateUntil: 2020-2-25 12:25:48
+
+    SalesReportDto:
+      type: object
+      description: Info with info about sales in concrete outlet
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        outletName:
+          type: string
+          example: La Spiga
+        totalOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        publishedOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        paidOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        unpaidOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        partialPaidOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        closedOrdersNumber:
+          type: integer
+          format: int64
+          example: 820
+        totalSales:
+          type: string
+          format: double
+          example: 1123.00
+        ingredientsCost:
+          type: string
+          format: double
+          example: 1123.00
+        totalRevenue:
+          type: string
+          format: double
+          example: 1123.00
+        dateFrom:
+          type: string
+          format: date
+        dateUntil:
+          type: string
+          format: date
+      example:
+        id: 123
+        outletName: La Spiga
+        totalOrdersNumber: 1250
+        publishedOrdersNumber: 1204
+        paidOrdersNumber: 1240
+        unpaidOrdersNumber: 10
+        partialPaidOrdersNumber: 0
+        closedOrdersNumber: 1200
+        totalSales: 12586.00
+        ingredientsCost: 2586.00
+        totalRevenue: 10000.00
+        dateFrom: 2020-2-10 12:25:48
+        dateUntil: 2020-2-25 12:25:48
+
+    IngredientStorageDto:
+      type: object
+      description: Information about one ingredient in storage
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        ingredientName:
+          type: string
+          example: Cow milk
+        currentQuantity:
+          type: string
+          format: double
+          example: 120.00
+        initialQuantity:
+          type: string
+          format: double
+          example: 150.00
+        unitName:
+          type: string
+          example: Kilogram
+        totalPrice:
+          type: string
+          format: double
+          example: 150.00
+        costPerUnit:
+          type: string
+          format: double
+          example: 1.50
+        storageCategory:
+          $ref: '#/components/schemas/StorageCategoryDto'
+        outletName:
+          type: string
+          example: La Spiga
+
+    MaterialStorageDto:
+      type: object
+      description: Information about one material in storage
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Soap
+        initialAmount:
+          type: integer
+          format: int64
+          example: 186
+        currentAmount:
+          type: integer
+          format: int64
+          example: 186
+        unitName:
+          type: string
+          example: Kilogram
+        totalPrice:
+          type: string
+          format: double
+          example: 150.00
+        costPerUnit:
+          type: string
+          format: double
+          example: 1.50
+        storageCategory:
+          $ref: '#/components/schemas/StorageCategoryDto'
+      example:
+        id: 12
+        name: Soap
+        initialAmount: 10
+        currentAmount: 4
+        unitName: Pack
+        totalPrice: 120
+        costPerUnit: 12
+        storageCategory: Soap
+
+    StorageCategoryDto:
+      type: object
+      description: Info about storage categories
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 186
+        name:
+          type: string
+          example: Alcohol
+      example:
+        id: 12
+        name: Alcohol
+
+    CommonResponse:
+      type: object
+      description: CommonResponse
+      properties:
+        responseId:
+          type: integer
+          format: int64
+          example: 186
+        status:
+          type: string
+          example: Some status
+      example:
+        responseId: 123
+
+    Error:
+      type: object
+      description: Error description
+      properties:
+        timestamp:
+          type: string
+          description: Date and time the error occurred
+          format: date-time
+          example: '2018-12-03T10:15:30+01:00'
+        status:
+          type: integer
+          description: HTTP status code of the error
+          format: int32
+          example: 404
+        errorCode:
+          type: string
+          description:
+            Business error code that allows using 'additional' or redefine 'message'
+          example: VALIDATION_ERROR
+        message:
+          type: string
+          description: Error message
+        path:
+          type: string
+          description: URL that resulted in the error
+          example: ui/cards/54321/history
+        additional:
+          type: object
+          description: >
+            Additional information on the error that is a map of keys and values.
+            Different error code can have different keys
+          additionalProperties: true
+      required:
+        - timestamp
+        - status
+        - message
+        - path
+
+  responses:
+    NoContent:
+      description: Successful response without content
+
+    BadRequest:
+      description: Supplied request data are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Access token is missing or invalid
+
+    Forbidden:
+      description: User is not granted sufficient privileges
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
