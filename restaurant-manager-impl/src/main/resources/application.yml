@@ -1,0 +1,21 @@
+server:
+  port: 8085
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5433/restaurant?useUnicode=true&useJDBCCompliantTimeZoneShift=true&useLegacyDatatimeCode=false&serverTimezone=UTC&useSSL=false
+    username: maximalus
+    password: mclayt
+    driver-class-name: org.postgresql.Driver
+
