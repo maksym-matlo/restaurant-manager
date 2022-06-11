@@ -40,15 +40,15 @@ public class IngredientGroup extends BaseEntity {
     @JsonManagedReference
     private List<Ingredient> ingredients = new ArrayList<>();
 
-//    public void addIngredient(Ingredient ingredient){
-//        ingredients.add(ingredient);
-//        ingredient.setIngredientGroup(this);
-//    }
-//
-//    public void deleteIngredient(Ingredient ingredient){
-//        ingredients.remove(ingredient);
-//        ingredient.setDeleted(true);
-//    }
+    public void addIngredient(Ingredient ingredient){
+        ingredients.add(ingredient);
+        ingredient.setIngredientGroup(this);
+    }
+
+    public void deleteIngredient(Ingredient ingredient){
+        ingredients.remove(ingredient);
+        ingredient.setDeleted(true);
+    }
 
     @Override
     public boolean equals(Object o) {
