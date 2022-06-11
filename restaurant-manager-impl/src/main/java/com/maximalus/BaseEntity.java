@@ -3,6 +3,8 @@ package com.maximalus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -18,9 +20,11 @@ public abstract class BaseEntity {
     private boolean deleted;
 
     @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime creationDate;
 
     @Column(nullable = false)
+    @UpdateTimestamp
     private LocalDateTime changingDate;
 
     @Override
