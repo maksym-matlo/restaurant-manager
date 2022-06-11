@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
  *
  * @author Maksym Matlo
  */
-
 @RestController
 @AllArgsConstructor
 public class UserResource implements UsersV1Api {
