@@ -27,10 +27,10 @@ public class OrderDto   {
   private List<OrderItemDto> orderItems = null;
 
   @JsonProperty("customerNumber")
-  private Long customerNumber;
+  private int customerNumber;
 
   @JsonProperty("tableNumber")
-  private Long tableNumber;
+  private int tableNumber;
 
   @JsonProperty("companyDiscount")
   private CompanyDiscountDto companyDiscount;
@@ -115,7 +115,7 @@ public class OrderDto   {
     this.orderItems = orderItems;
   }
 
-  public OrderDto customerNumber(Long customerNumber) {
+  public OrderDto customerNumber(int customerNumber) {
     this.customerNumber = customerNumber;
     return this;
   }
@@ -127,15 +127,15 @@ public class OrderDto   {
   @ApiModelProperty(example = "186", value = "")
 
 
-  public Long getCustomerNumber() {
+  public int getCustomerNumber() {
     return customerNumber;
   }
 
-  public void setCustomerNumber(Long customerNumber) {
+  public void setCustomerNumber(int customerNumber) {
     this.customerNumber = customerNumber;
   }
 
-  public OrderDto tableNumber(Long tableNumber) {
+  public OrderDto tableNumber(int tableNumber) {
     this.tableNumber = tableNumber;
     return this;
   }
@@ -147,11 +147,11 @@ public class OrderDto   {
   @ApiModelProperty(example = "16", value = "")
 
 
-  public Long getTableNumber() {
+  public int getTableNumber() {
     return tableNumber;
   }
 
-  public void setTableNumber(Long tableNumber) {
+  public void setTableNumber(int tableNumber) {
     this.tableNumber = tableNumber;
   }
 

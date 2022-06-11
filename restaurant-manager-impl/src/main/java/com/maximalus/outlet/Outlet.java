@@ -38,12 +38,12 @@ public class Outlet extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Setter(AccessLevel.PRIVATE)
+//    @Setter(AccessLevel.PRIVATE)
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
 
-    @Setter(AccessLevel.PRIVATE)
+//    @Setter(AccessLevel.PRIVATE)
     @OneToMany
     @ToString.Exclude
     private List<User> users = new ArrayList<>();

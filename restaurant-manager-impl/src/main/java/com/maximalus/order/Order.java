@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -68,23 +69,23 @@ public class Order extends BaseEntity {
     @ToString.Exclude
     private List<OrderStatusRecord> orderStatusRecords = new ArrayList<>();
 
-//    public void addOrderStatusRecord(OrderStatus orderStatus){
-//        OrderStatusRecord orderStatusRecord = new OrderStatusRecord();
-//        orderStatusRecord.setOrderStatus(orderStatus);
-//        orderStatusRecord.setCreationDate(LocalDateTime.now());
-//        this.orderStatusRecords.add(orderStatusRecord);
-//        orderStatusRecord.setOrder(this);
-//    }
-//
-//    public void addOrderItem (OrderItem orderItem) {
-//        orderItems.add(orderItem);
-//        orderItem.setOrder(this);
-//    }
-//
-//    public void removeOrderItem(OrderItem orderItem) {
-//        orderItems.remove(orderItem);
-//        orderItem.setOrder(null);
-//    }
+    public void addOrderStatusRecord(OrderStatus orderStatus){
+        OrderStatusRecord orderStatusRecord = new OrderStatusRecord();
+        orderStatusRecord.setOrderStatus(orderStatus);
+        orderStatusRecord.setCreationDate(LocalDateTime.now());
+        this.orderStatusRecords.add(orderStatusRecord);
+        orderStatusRecord.setOrder(this);
+    }
+
+    public void addOrderItem (OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void removeOrderItem(OrderItem orderItem) {
+        orderItems.remove(orderItem);
+        orderItem.setOrder(null);
+    }
 
     @Override
     public boolean equals(Object o) {
