@@ -3,6 +3,7 @@ package com.maximalus.order;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +32,7 @@ public class OrderStatusRecord {
     private OrderStatus orderStatus;
 
     @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime creationDate;
 
     @ManyToOne
