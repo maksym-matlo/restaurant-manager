@@ -1,26 +1,26 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.List;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * PageViewDto
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class PageView<T> {
   @JsonProperty("total")
-  private Long total;
+  private Integer total;
 
   @JsonProperty("data")
   @Valid
   private List<T> data = null;
 
-  public PageView total(Long total) {
+  public PageView total(Integer total) {
     this.total = total;
     return this;
   }
@@ -32,11 +32,11 @@ public class PageView<T> {
   @ApiModelProperty(example = "1000", value = "")
 
 
-  public Long getTotal() {
+  public Integer getTotal() {
     return total;
   }
 
-  public void setTotal(Long total) {
+  public void setTotal(Integer total) {
     this.total = total;
   }
 

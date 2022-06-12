@@ -1,19 +1,25 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.ItemDiscountDto;
+import com.maximalus.openapi.v1.model.MenuItemGroupDto;
+import com.maximalus.openapi.v1.model.RecipeDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Information about item from menu
  */
 @ApiModel(description = "Information about item from menu")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class MenuItemDto   {
   @JsonProperty("id")
   private Long id;
@@ -25,13 +31,13 @@ public class MenuItemDto   {
   private Double pricePerUnit;
 
   @JsonProperty("markupPercentage")
-  private Long markupPercentage;
+  private Integer markupPercentage;
 
   @JsonProperty("purchasePricePerUnit")
   private Double purchasePricePerUnit;
 
   @JsonProperty("availableQuantity")
-  private Long availableQuantity;
+  private Integer availableQuantity;
 
   @JsonProperty("outletName")
   private String outletName;
@@ -109,7 +115,7 @@ public class MenuItemDto   {
     this.pricePerUnit = pricePerUnit;
   }
 
-  public MenuItemDto markupPercentage(Long markupPercentage) {
+  public MenuItemDto markupPercentage(Integer markupPercentage) {
     this.markupPercentage = markupPercentage;
     return this;
   }
@@ -121,11 +127,11 @@ public class MenuItemDto   {
   @ApiModelProperty(example = "18", value = "")
 
 
-  public Long getMarkupPercentage() {
+  public Integer getMarkupPercentage() {
     return markupPercentage;
   }
 
-  public void setMarkupPercentage(Long markupPercentage) {
+  public void setMarkupPercentage(Integer markupPercentage) {
     this.markupPercentage = markupPercentage;
   }
 
@@ -149,7 +155,7 @@ public class MenuItemDto   {
     this.purchasePricePerUnit = purchasePricePerUnit;
   }
 
-  public MenuItemDto availableQuantity(Long availableQuantity) {
+  public MenuItemDto availableQuantity(Integer availableQuantity) {
     this.availableQuantity = availableQuantity;
     return this;
   }
@@ -161,11 +167,11 @@ public class MenuItemDto   {
   @ApiModelProperty(example = "186", value = "")
 
 
-  public Long getAvailableQuantity() {
+  public Integer getAvailableQuantity() {
     return availableQuantity;
   }
 
-  public void setAvailableQuantity(Long availableQuantity) {
+  public void setAvailableQuantity(Integer availableQuantity) {
     this.availableQuantity = availableQuantity;
   }
 
@@ -297,7 +303,8 @@ public class MenuItemDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, pricePerUnit, markupPercentage, purchasePricePerUnit, availableQuantity, outletName, recipes, itemDiscount, menuItemGroup, menuItemStatus);
+    return Objects.hash(id, name, pricePerUnit, markupPercentage, purchasePricePerUnit, availableQuantity,
+            outletName, recipes, itemDiscount, menuItemGroup, menuItemStatus);
   }
 
   @Override

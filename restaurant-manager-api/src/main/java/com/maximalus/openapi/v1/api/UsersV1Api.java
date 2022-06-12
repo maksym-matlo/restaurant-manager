@@ -6,10 +6,9 @@
 
 package com.maximalus.openapi.v1.api;
 
-import com.maximalus.openapi.v1.model.Error;
-import com.maximalus.openapi.v1.model.PageView;
-import com.maximalus.openapi.v1.model.RequestFilter;
 import com.maximalus.openapi.v1.model.CommonResponseDto;
+import com.maximalus.openapi.v1.model.ErrorDto;
+import com.maximalus.openapi.v1.model.PageView;
 import com.maximalus.openapi.v1.model.UserDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +16,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import org.apache.catalina.filters.RequestFilter;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,10 +29,33 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T21:31:57.849629700+03:00[Europe/Helsinki]")
 @Validated
 @Api(value = "UsersV1", description = "the UsersV1 API")
 public interface UsersV1Api {
+
+    /**
+     * DELETE /ui/users/{userId} : User deletion
+     *
+     * @param userId Id for user updating (required)
+     * @return Successful response (status code 200)Supplied request data are invalid (status code 400)Access token is missing or invalid (status code 401)User is not granted sufficient privileges (status code 403)Internal server error (status code 500)
+     */
+    @ApiOperation(value = "User deletion", nickname = "deleteUser", notes = "", response = CommonResponseDto.class, authorizations = {
+        @Authorization(value = "bearerAuth")
+    }, tags={ "users-v1", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Successful response", response = CommonResponseDto.class),
+        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = ErrorDto.class),
+        @ApiResponse(code = 401, message = "Access token is missing or invalid"),
+        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = ErrorDto.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
+    @RequestMapping(value = "/ui/users/{userId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    ResponseEntity<UserDto> deleteUser(
+            @ApiParam(value = "Id for user updating",required=true)
+            @PathVariable("userId") Long userId);
+
 
     /**
      * GET /ui/users/{userId} : Information about concrete user
@@ -45,15 +68,17 @@ public interface UsersV1Api {
     }, tags={ "users-v1", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = UserDto.class),
-        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = Error.class),
+        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = ErrorDto.class),
         @ApiResponse(code = 401, message = "Access token is missing or invalid"),
-        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = Error.class),
-        @ApiResponse(code = 404, message = "Resource was not found", response = Error.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = Error.class) })
+        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = ErrorDto.class),
+        @ApiResponse(code = 404, message = "Resource was not found", response = ErrorDto.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
     @RequestMapping(value = "/ui/users/{userId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<UserDto> getUserById(@ApiParam(value = "User identifier",required=true) @PathVariable("userId") Long userId);
+    ResponseEntity<UserDto> getUserById(
+            @ApiParam(value = "User identifier",required=true)
+            @PathVariable("userId") Long userId);
 
 
     /**
@@ -73,9 +98,9 @@ public interface UsersV1Api {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = PageView.class),
         @ApiResponse(code = 401, message = "Access token is missing or invalid"),
-        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = Error.class),
-        @ApiResponse(code = 404, message = "Resource was not found", response = Error.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = Error.class) })
+        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = ErrorDto.class),
+        @ApiResponse(code = 404, message = "Resource was not found", response = ErrorDto.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
     @RequestMapping(value = "/ui/users",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
@@ -95,16 +120,17 @@ public interface UsersV1Api {
     }, tags={ "users-v1", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = CommonResponseDto.class),
-        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = Error.class),
+        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = ErrorDto.class),
         @ApiResponse(code = 401, message = "Access token is missing or invalid"),
-        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = Error.class),
-        @ApiResponse(code = 404, message = "Resource was not found", response = Error.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = Error.class) })
+        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = ErrorDto.class),
+        @ApiResponse(code = 404, message = "Resource was not found", response = ErrorDto.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
     @RequestMapping(value = "/ui/users",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<CommonResponseDto> postUser(@ApiParam(value = "Callback payload"  ) @Valid @RequestBody(required = false) UserDto userDto);
+    ResponseEntity<CommonResponseDto> postUser(@ApiParam(value = "Callback payload"  )
+                                                @Valid @RequestBody(required = false) UserDto userDto);
 
 
     /**
@@ -119,39 +145,18 @@ public interface UsersV1Api {
     }, tags={ "users-v1", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = CommonResponseDto.class),
-        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = Error.class),
+        @ApiResponse(code = 400, message = "Supplied request data are invalid", response = ErrorDto.class),
         @ApiResponse(code = 401, message = "Access token is missing or invalid"),
-        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = Error.class),
-        @ApiResponse(code = 404, message = "Resource was not found", response = Error.class),
-        @ApiResponse(code = 500, message = "Internal server error", response = Error.class) })
+        @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = ErrorDto.class),
+        @ApiResponse(code = 404, message = "Resource was not found", response = ErrorDto.class),
+        @ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
     @RequestMapping(value = "/ui/users/{userId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<CommonResponseDto> updateUser(
-            @ApiParam(value = "Id for user updating",required=true)
-            @PathVariable("userId") Long userId,
-            @ApiParam(value = "Callback payload" )
-            @Valid @RequestBody(required = false) UserDto userDto);
+    ResponseEntity<CommonResponseDto> updateUser(@ApiParam(value = "Id for user updating",required=true)
+                                                  @PathVariable("userId") Long userId,
+                                                  @ApiParam(value = "Callback payload"  )
+                                                  @Valid @RequestBody(required = false) UserDto userDto);
 
-    /**
-     * DELETE /ui/users/{userId} : User deletion
-     *
-     * @param userId Id for user updating (required)
-     * @return Successful response (status code 200)Supplied request data are invalid (status code 400)Access token is missing or invalid (status code 401)User is not granted sufficient privileges (status code 403)Internal server error (status code 500)
-     */
-    @ApiOperation(value = "User deletion", nickname = "deleteUser", notes = "", response = CommonResponseDto.class,
-            authorizations = {
-                    @Authorization(value = "bearerAuth")
-            }, tags={ "users-v1", })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful response", response = CommonResponseDto.class),
-            @ApiResponse(code = 400, message = "Supplied request data are invalid", response = Error.class),
-            @ApiResponse(code = 401, message = "Access token is missing or invalid"),
-            @ApiResponse(code = 403, message = "User is not granted sufficient privileges", response = Error.class),
-            @ApiResponse(code = 500, message = "Internal server error", response = Error.class) })
-    @RequestMapping(value = "/ui/users/{userId}",
-            produces = { "application/json" },
-            method = RequestMethod.DELETE)
-    ResponseEntity<UserDto> deleteUser(@ApiParam(value = "Id for user updating",required=true) @PathVariable("userId") Long userId);
 }

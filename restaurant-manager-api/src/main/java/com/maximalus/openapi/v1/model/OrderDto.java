@@ -1,20 +1,27 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.CompanyDiscountDto;
+import com.maximalus.openapi.v1.model.ItemDiscountDto;
+import com.maximalus.openapi.v1.model.OrderItemDto;
+import com.maximalus.openapi.v1.model.OrderStatusRecordDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Order info
  */
 @ApiModel(description = "Order info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class OrderDto   {
   @JsonProperty("id")
   private Long id;
@@ -27,10 +34,10 @@ public class OrderDto   {
   private List<OrderItemDto> orderItems = null;
 
   @JsonProperty("customerNumber")
-  private int customerNumber;
+  private Integer customerNumber;
 
   @JsonProperty("tableNumber")
-  private int tableNumber;
+  private Integer tableNumber;
 
   @JsonProperty("companyDiscount")
   private CompanyDiscountDto companyDiscount;
@@ -49,10 +56,10 @@ public class OrderDto   {
   private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public OrderDto id(Long id) {
     this.id = id;
@@ -115,7 +122,7 @@ public class OrderDto   {
     this.orderItems = orderItems;
   }
 
-  public OrderDto customerNumber(int customerNumber) {
+  public OrderDto customerNumber(Integer customerNumber) {
     this.customerNumber = customerNumber;
     return this;
   }
@@ -127,15 +134,15 @@ public class OrderDto   {
   @ApiModelProperty(example = "186", value = "")
 
 
-  public int getCustomerNumber() {
+  public Integer getCustomerNumber() {
     return customerNumber;
   }
 
-  public void setCustomerNumber(int customerNumber) {
+  public void setCustomerNumber(Integer customerNumber) {
     this.customerNumber = customerNumber;
   }
 
-  public OrderDto tableNumber(int tableNumber) {
+  public OrderDto tableNumber(Integer tableNumber) {
     this.tableNumber = tableNumber;
     return this;
   }
@@ -147,11 +154,11 @@ public class OrderDto   {
   @ApiModelProperty(example = "16", value = "")
 
 
-  public int getTableNumber() {
+  public Integer getTableNumber() {
     return tableNumber;
   }
 
-  public void setTableNumber(int tableNumber) {
+  public void setTableNumber(Integer tableNumber) {
     this.tableNumber = tableNumber;
   }
 
@@ -258,7 +265,7 @@ public class OrderDto   {
     this.isDeleted = isDeleted;
   }
 
-  public OrderDto creationDate(LocalDate creationDate) {
+  public OrderDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -271,15 +278,15 @@ public class OrderDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public OrderDto changingDate(LocalDate changingDate) {
+  public OrderDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -292,11 +299,11 @@ public class OrderDto   {
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 
@@ -326,7 +333,8 @@ public class OrderDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, userInfo, orderItems, customerNumber, tableNumber, companyDiscount, itemDiscount, totalCost, orderStatusRecords, isDeleted, creationDate, changingDate);
+    return Objects.hash(id, userInfo, orderItems, customerNumber, tableNumber, companyDiscount, itemDiscount,
+            totalCost, orderStatusRecords, isDeleted, creationDate, changingDate);
   }
 
   @Override

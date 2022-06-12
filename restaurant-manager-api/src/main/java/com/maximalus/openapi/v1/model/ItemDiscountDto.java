@@ -1,19 +1,22 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.DiscountProofDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Info about item discount
  */
 @ApiModel(description = "Info about item discount")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class ItemDiscountDto   {
   @JsonProperty("id")
   private Long id;
@@ -22,10 +25,10 @@ public class ItemDiscountDto   {
   private String menuItemName;
 
   @JsonProperty("amountOfProduct")
-  private Long amountOfProduct;
+  private Integer amountOfProduct;
 
   @JsonProperty("discountPercentage")
-  private Long discountPercentage;
+  private Integer discountPercentage;
 
   @JsonProperty("discountProof")
   private DiscountProofDto discountProof;
@@ -34,10 +37,10 @@ public class ItemDiscountDto   {
   private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public ItemDiscountDto id(Long id) {
     this.id = id;
@@ -79,7 +82,7 @@ public class ItemDiscountDto   {
     this.menuItemName = menuItemName;
   }
 
-  public ItemDiscountDto amountOfProduct(Long amountOfProduct) {
+  public ItemDiscountDto amountOfProduct(Integer amountOfProduct) {
     this.amountOfProduct = amountOfProduct;
     return this;
   }
@@ -91,15 +94,15 @@ public class ItemDiscountDto   {
   @ApiModelProperty(example = "2", value = "")
 
 
-  public Long getAmountOfProduct() {
+  public Integer getAmountOfProduct() {
     return amountOfProduct;
   }
 
-  public void setAmountOfProduct(Long amountOfProduct) {
+  public void setAmountOfProduct(Integer amountOfProduct) {
     this.amountOfProduct = amountOfProduct;
   }
 
-  public ItemDiscountDto discountPercentage(Long discountPercentage) {
+  public ItemDiscountDto discountPercentage(Integer discountPercentage) {
     this.discountPercentage = discountPercentage;
     return this;
   }
@@ -111,11 +114,11 @@ public class ItemDiscountDto   {
   @ApiModelProperty(example = "18", value = "")
 
 
-  public Long getDiscountPercentage() {
+  public Integer getDiscountPercentage() {
     return discountPercentage;
   }
 
-  public void setDiscountPercentage(Long discountPercentage) {
+  public void setDiscountPercentage(Integer discountPercentage) {
     this.discountPercentage = discountPercentage;
   }
 
@@ -160,7 +163,7 @@ public class ItemDiscountDto   {
     this.isDeleted = isDeleted;
   }
 
-  public ItemDiscountDto creationDate(LocalDate creationDate) {
+  public ItemDiscountDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -173,15 +176,15 @@ public class ItemDiscountDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public ItemDiscountDto changingDate(LocalDate changingDate) {
+  public ItemDiscountDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -194,11 +197,11 @@ public class ItemDiscountDto   {
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 
@@ -224,7 +227,8 @@ public class ItemDiscountDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, menuItemName, amountOfProduct, discountPercentage, discountProof, isDeleted, creationDate, changingDate);
+    return Objects.hash(id, menuItemName, amountOfProduct, discountPercentage, discountProof,
+            isDeleted, creationDate, changingDate);
   }
 
   @Override

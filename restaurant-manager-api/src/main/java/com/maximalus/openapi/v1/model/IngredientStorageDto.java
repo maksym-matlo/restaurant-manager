@@ -1,18 +1,21 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.StorageCategoryDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Information about one ingredient in storage
  */
 @ApiModel(description = "Information about one ingredient in storage")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class IngredientStorageDto   {
   @JsonProperty("id")
   private Long id;
@@ -245,7 +248,8 @@ public class IngredientStorageDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ingredientName, currentQuantity, initialQuantity, unitName, totalPrice, costPerUnit, storageCategory, outletName);
+    return Objects.hash(id, ingredientName, currentQuantity, initialQuantity, unitName,
+            totalPrice, costPerUnit, storageCategory, outletName);
   }
 
   @Override

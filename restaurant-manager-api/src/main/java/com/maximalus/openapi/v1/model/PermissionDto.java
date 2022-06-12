@@ -1,12 +1,19 @@
 package com.maximalus.openapi.v1.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.Objects;
+import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
  * User permissions info
  */
-public enum Permission {
+public enum PermissionDto {
   
   ADMINISTRATOR("ADMINISTRATOR"),
   
@@ -30,7 +37,7 @@ public enum Permission {
 
   private String value;
 
-  Permission(String value) {
+  PermissionDto(String value) {
     this.value = value;
   }
 
@@ -45,8 +52,8 @@ public enum Permission {
   }
 
   @JsonCreator
-  public static Permission fromValue(String value) {
-    for (Permission b : Permission.values()) {
+  public static PermissionDto fromValue(String value) {
+    for (PermissionDto b : PermissionDto.values()) {
       if (b.value.equals(value)) {
         return b;
       }

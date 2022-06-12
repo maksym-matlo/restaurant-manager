@@ -1,19 +1,22 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.DiscountProofDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Info about company discount
  */
 @ApiModel(description = "Info about company discount")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class CompanyDiscountDto   {
   @JsonProperty("id")
   private Long id;
@@ -22,7 +25,7 @@ public class CompanyDiscountDto   {
   private String companyName;
 
   @JsonProperty("discountPercentage")
-  private Long discountPercentage;
+  private Integer discountPercentage;
 
   @JsonProperty("discountProof")
   private DiscountProofDto discountProof;
@@ -31,10 +34,10 @@ public class CompanyDiscountDto   {
   private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public CompanyDiscountDto id(Long id) {
     this.id = id;
@@ -76,7 +79,7 @@ public class CompanyDiscountDto   {
     this.companyName = companyName;
   }
 
-  public CompanyDiscountDto discountPercentage(Long discountPercentage) {
+  public CompanyDiscountDto discountPercentage(Integer discountPercentage) {
     this.discountPercentage = discountPercentage;
     return this;
   }
@@ -88,11 +91,11 @@ public class CompanyDiscountDto   {
   @ApiModelProperty(example = "18", value = "")
 
 
-  public Long getDiscountPercentage() {
+  public Integer getDiscountPercentage() {
     return discountPercentage;
   }
 
-  public void setDiscountPercentage(Long discountPercentage) {
+  public void setDiscountPercentage(Integer discountPercentage) {
     this.discountPercentage = discountPercentage;
   }
 
@@ -137,7 +140,7 @@ public class CompanyDiscountDto   {
     this.isDeleted = isDeleted;
   }
 
-  public CompanyDiscountDto creationDate(LocalDate creationDate) {
+  public CompanyDiscountDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -150,15 +153,15 @@ public class CompanyDiscountDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public CompanyDiscountDto changingDate(LocalDate changingDate) {
+  public CompanyDiscountDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -171,11 +174,11 @@ public class CompanyDiscountDto   {
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 

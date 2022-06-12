@@ -1,12 +1,19 @@
 package com.maximalus.openapi.v1.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.Objects;
+import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
  * Menu item statuses
  */
-public enum MenuItemStatus {
+public enum MenuItemStatusDto {
   
   IN_STOCK("IN_STOCK"),
   
@@ -16,7 +23,7 @@ public enum MenuItemStatus {
 
   private String value;
 
-  MenuItemStatus(String value) {
+  MenuItemStatusDto(String value) {
     this.value = value;
   }
 
@@ -31,8 +38,8 @@ public enum MenuItemStatus {
   }
 
   @JsonCreator
-  public static MenuItemStatus fromValue(String value) {
-    for (MenuItemStatus b : MenuItemStatus.values()) {
+  public static MenuItemStatusDto fromValue(String value) {
+    for (MenuItemStatusDto b : MenuItemStatusDto.values()) {
       if (b.value.equals(value)) {
         return b;
       }

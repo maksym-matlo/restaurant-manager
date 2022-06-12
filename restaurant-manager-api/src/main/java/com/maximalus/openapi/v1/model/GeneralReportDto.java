@@ -1,19 +1,21 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Report with general info
  */
 @ApiModel(description = "Report with general info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class GeneralReportDto   {
   @JsonProperty("id")
   private Long id;
@@ -22,19 +24,19 @@ public class GeneralReportDto   {
   private String outletName;
 
   @JsonProperty("numberOfOrders")
-  private Long numberOfOrders;
+  private Integer numberOfOrders;
 
   @JsonProperty("numberOfCustomers")
-  private Long numberOfCustomers;
+  private Integer numberOfCustomers;
 
   @JsonProperty("numberOfUnpaidOrders")
-  private Long numberOfUnpaidOrders;
+  private Integer numberOfUnpaidOrders;
 
   @JsonProperty("dateFrom")
-  private LocalDate dateFrom;
+  private OffsetDateTime dateFrom;
 
   @JsonProperty("dateUntil")
-  private LocalDate dateUntil;
+  private OffsetDateTime dateUntil;
 
   public GeneralReportDto id(Long id) {
     this.id = id;
@@ -76,7 +78,7 @@ public class GeneralReportDto   {
     this.outletName = outletName;
   }
 
-  public GeneralReportDto numberOfOrders(Long numberOfOrders) {
+  public GeneralReportDto numberOfOrders(Integer numberOfOrders) {
     this.numberOfOrders = numberOfOrders;
     return this;
   }
@@ -88,15 +90,15 @@ public class GeneralReportDto   {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getNumberOfOrders() {
+  public Integer getNumberOfOrders() {
     return numberOfOrders;
   }
 
-  public void setNumberOfOrders(Long numberOfOrders) {
+  public void setNumberOfOrders(Integer numberOfOrders) {
     this.numberOfOrders = numberOfOrders;
   }
 
-  public GeneralReportDto numberOfCustomers(Long numberOfCustomers) {
+  public GeneralReportDto numberOfCustomers(Integer numberOfCustomers) {
     this.numberOfCustomers = numberOfCustomers;
     return this;
   }
@@ -108,15 +110,15 @@ public class GeneralReportDto   {
   @ApiModelProperty(example = "1860", value = "")
 
 
-  public Long getNumberOfCustomers() {
+  public Integer getNumberOfCustomers() {
     return numberOfCustomers;
   }
 
-  public void setNumberOfCustomers(Long numberOfCustomers) {
+  public void setNumberOfCustomers(Integer numberOfCustomers) {
     this.numberOfCustomers = numberOfCustomers;
   }
 
-  public GeneralReportDto numberOfUnpaidOrders(Long numberOfUnpaidOrders) {
+  public GeneralReportDto numberOfUnpaidOrders(Integer numberOfUnpaidOrders) {
     this.numberOfUnpaidOrders = numberOfUnpaidOrders;
     return this;
   }
@@ -128,15 +130,15 @@ public class GeneralReportDto   {
   @ApiModelProperty(example = "47", value = "")
 
 
-  public Long getNumberOfUnpaidOrders() {
+  public Integer getNumberOfUnpaidOrders() {
     return numberOfUnpaidOrders;
   }
 
-  public void setNumberOfUnpaidOrders(Long numberOfUnpaidOrders) {
+  public void setNumberOfUnpaidOrders(Integer numberOfUnpaidOrders) {
     this.numberOfUnpaidOrders = numberOfUnpaidOrders;
   }
 
-  public GeneralReportDto dateFrom(LocalDate dateFrom) {
+  public GeneralReportDto dateFrom(OffsetDateTime dateFrom) {
     this.dateFrom = dateFrom;
     return this;
   }
@@ -149,15 +151,15 @@ public class GeneralReportDto   {
 
   @Valid
 
-  public LocalDate getDateFrom() {
+  public OffsetDateTime getDateFrom() {
     return dateFrom;
   }
 
-  public void setDateFrom(LocalDate dateFrom) {
+  public void setDateFrom(OffsetDateTime dateFrom) {
     this.dateFrom = dateFrom;
   }
 
-  public GeneralReportDto dateUntil(LocalDate dateUntil) {
+  public GeneralReportDto dateUntil(OffsetDateTime dateUntil) {
     this.dateUntil = dateUntil;
     return this;
   }
@@ -170,11 +172,11 @@ public class GeneralReportDto   {
 
   @Valid
 
-  public LocalDate getDateUntil() {
+  public OffsetDateTime getDateUntil() {
     return dateUntil;
   }
 
-  public void setDateUntil(LocalDate dateUntil) {
+  public void setDateUntil(OffsetDateTime dateUntil) {
     this.dateUntil = dateUntil;
   }
 
@@ -188,12 +190,12 @@ public class GeneralReportDto   {
       return false;
     }
     GeneralReportDto generalReport = (GeneralReportDto) o;
-    return Objects.equals(this.id, generalReport.id)
-            && Objects.equals(this.outletName, generalReport.outletName)
-            && Objects.equals(this.numberOfOrders, generalReport.numberOfOrders)
-            && Objects.equals(this.numberOfCustomers, generalReport.numberOfCustomers)
-            && Objects.equals(this.numberOfUnpaidOrders, generalReport.numberOfUnpaidOrders)
-            && Objects.equals(this.dateFrom, generalReport.dateFrom)
+    return Objects.equals(this.id, generalReport.id )
+            && Objects.equals(this.outletName, generalReport.outletName )
+            && Objects.equals(this.numberOfOrders, generalReport.numberOfOrders )
+            && Objects.equals(this.numberOfCustomers, generalReport.numberOfCustomers )
+            && Objects.equals(this.numberOfUnpaidOrders, generalReport.numberOfUnpaidOrders )
+            && Objects.equals(this.dateFrom, generalReport.dateFrom )
             && Objects.equals(this.dateUntil, generalReport.dateUntil);
   }
 

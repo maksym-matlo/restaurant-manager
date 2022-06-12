@@ -1,20 +1,19 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
 
 /**
  * Info with info about sales in concrete outlet
  */
 @ApiModel(description = "Info with info about sales in concrete outlet")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
-public class SalesReportDto {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
+public class SalesReportDto   {
   @JsonProperty("id")
   private Long id;
 
@@ -22,22 +21,22 @@ public class SalesReportDto {
   private String outletName;
 
   @JsonProperty("totalOrdersNumber")
-  private Long totalOrdersNumber;
+  private Integer totalOrderNumber;
 
   @JsonProperty("publishedOrdersNumber")
-  private Long publishedOrdersNumber;
+  private Integer publishedOrderNumber;
 
   @JsonProperty("paidOrdersNumber")
-  private Long paidOrdersNumber;
+  private Integer paidOrderNumber;
 
   @JsonProperty("unpaidOrdersNumber")
-  private Long unpaidOrdersNumber;
+  private Integer unpaidOrderNumber;
 
   @JsonProperty("partialPaidOrdersNumber")
-  private Long partialPaidOrdersNumber;
+  private Integer partialPaidOrderNumber;
 
   @JsonProperty("closedOrdersNumber")
-  private Long closedOrdersNumber;
+  private Integer closedOrderNumber;
 
   @JsonProperty("totalSales")
   private Double totalSales;
@@ -49,10 +48,10 @@ public class SalesReportDto {
   private Double totalRevenue;
 
   @JsonProperty("dateFrom")
-  private LocalDate dateFrom;
+  private OffsetDateTime dateFrom;
 
   @JsonProperty("dateUntil")
-  private LocalDate dateUntil;
+  private OffsetDateTime dateUntil;
 
   public SalesReportDto id(Long id) {
     this.id = id;
@@ -94,8 +93,8 @@ public class SalesReportDto {
     this.outletName = outletName;
   }
 
-  public SalesReportDto totalOrdersNumber(Long totalOrdersNumber) {
-    this.totalOrdersNumber = totalOrdersNumber;
+  public SalesReportDto totalOrdersNumber(Integer totalOrdersNumber) {
+    this.totalOrderNumber = totalOrdersNumber;
     return this;
   }
 
@@ -106,16 +105,16 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getTotalOrdersNumber() {
-    return totalOrdersNumber;
+  public Integer getTotalOrderNumber() {
+    return totalOrderNumber;
   }
 
-  public void setTotalOrdersNumber(Long totalOrdersNumber) {
-    this.totalOrdersNumber = totalOrdersNumber;
+  public void setTotalOrderNumber(Integer totalOrderNumber) {
+    this.totalOrderNumber = totalOrderNumber;
   }
 
-  public SalesReportDto publishedOrdersNumber(Long publishedOrdersNumber) {
-    this.publishedOrdersNumber = publishedOrdersNumber;
+  public SalesReportDto publishedOrdersNumber(Integer publishedOrdersNumber) {
+    this.publishedOrderNumber = publishedOrdersNumber;
     return this;
   }
 
@@ -126,16 +125,16 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getPublishedOrdersNumber() {
-    return publishedOrdersNumber;
+  public Integer getPublishedOrderNumber() {
+    return publishedOrderNumber;
   }
 
-  public void setPublishedOrdersNumber(Long publishedOrdersNumber) {
-    this.publishedOrdersNumber = publishedOrdersNumber;
+  public void setPublishedOrderNumber(Integer publishedOrderNumber) {
+    this.publishedOrderNumber = publishedOrderNumber;
   }
 
-  public SalesReportDto paidOrdersNumber(Long paidOrdersNumber) {
-    this.paidOrdersNumber = paidOrdersNumber;
+  public SalesReportDto paidOrderNumber(Integer paidOrderNumber) {
+    this.paidOrderNumber = paidOrderNumber;
     return this;
   }
 
@@ -146,16 +145,16 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getPaidOrdersNumber() {
-    return paidOrdersNumber;
+  public Integer getPaidOrdersNumber() {
+    return paidOrderNumber;
   }
 
-  public void setPaidOrdersNumber(Long paidOrdersNumber) {
-    this.paidOrdersNumber = paidOrdersNumber;
+  public void setPaidOrdersNumber(Integer paidOrdersNumber) {
+    this.paidOrderNumber = paidOrdersNumber;
   }
 
-  public SalesReportDto unpaidOrdersNumber(Long unpaidOrdersNumber) {
-    this.unpaidOrdersNumber = unpaidOrdersNumber;
+  public SalesReportDto unpaidOrdersNumber(Integer unpaidOrdersNumber) {
+    this.unpaidOrderNumber = unpaidOrdersNumber;
     return this;
   }
 
@@ -166,16 +165,16 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getUnpaidOrdersNumber() {
-    return unpaidOrdersNumber;
+  public Integer getUnpaidOrderNumber() {
+    return unpaidOrderNumber;
   }
 
-  public void setUnpaidOrdersNumber(Long unpaidOrdersNumber) {
-    this.unpaidOrdersNumber = unpaidOrdersNumber;
+  public void setUnpaidOrderNumber(Integer unpaidOrderNumber) {
+    this.unpaidOrderNumber = unpaidOrderNumber;
   }
 
-  public SalesReportDto partialPaidOrdersNumber(Long partialPaidOrdersNumber) {
-    this.partialPaidOrdersNumber = partialPaidOrdersNumber;
+  public SalesReportDto partialPaidOrdersNumber(Integer partialPaidOrdersNumber) {
+    this.partialPaidOrderNumber = partialPaidOrdersNumber;
     return this;
   }
 
@@ -186,16 +185,16 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getPartialPaidOrdersNumber() {
-    return partialPaidOrdersNumber;
+  public Integer getPartialPaidOrderNumber() {
+    return partialPaidOrderNumber;
   }
 
-  public void setPartialPaidOrdersNumber(Long partialPaidOrdersNumber) {
-    this.partialPaidOrdersNumber = partialPaidOrdersNumber;
+  public void setPartialPaidOrderNumber(Integer partialPaidOrderNumber) {
+    this.partialPaidOrderNumber = partialPaidOrderNumber;
   }
 
-  public SalesReportDto closedOrdersNumber(Long closedOrdersNumber) {
-    this.closedOrdersNumber = closedOrdersNumber;
+  public SalesReportDto closedOrdersNumber(Integer closedOrdersNumber) {
+    this.closedOrderNumber = closedOrdersNumber;
     return this;
   }
 
@@ -206,12 +205,12 @@ public class SalesReportDto {
   @ApiModelProperty(example = "820", value = "")
 
 
-  public Long getClosedOrdersNumber() {
-    return closedOrdersNumber;
+  public Integer getClosedOrderNumber() {
+    return closedOrderNumber;
   }
 
-  public void setClosedOrdersNumber(Long closedOrdersNumber) {
-    this.closedOrdersNumber = closedOrdersNumber;
+  public void setClosedOrderNumber(Integer closedOrderNumber) {
+    this.closedOrderNumber = closedOrderNumber;
   }
 
   public SalesReportDto totalSales(Double totalSales) {
@@ -274,7 +273,7 @@ public class SalesReportDto {
     this.totalRevenue = totalRevenue;
   }
 
-  public SalesReportDto dateFrom(LocalDate dateFrom) {
+  public SalesReportDto dateFrom(OffsetDateTime dateFrom) {
     this.dateFrom = dateFrom;
     return this;
   }
@@ -287,15 +286,15 @@ public class SalesReportDto {
 
   @Valid
 
-  public LocalDate getDateFrom() {
+  public OffsetDateTime getDateFrom() {
     return dateFrom;
   }
 
-  public void setDateFrom(LocalDate dateFrom) {
+  public void setDateFrom(OffsetDateTime dateFrom) {
     this.dateFrom = dateFrom;
   }
 
-  public SalesReportDto dateUntil(LocalDate dateUntil) {
+  public SalesReportDto dateUntil(OffsetDateTime dateUntil) {
     this.dateUntil = dateUntil;
     return this;
   }
@@ -308,11 +307,11 @@ public class SalesReportDto {
 
   @Valid
 
-  public LocalDate getDateUntil() {
+  public OffsetDateTime getDateUntil() {
     return dateUntil;
   }
 
-  public void setDateUntil(LocalDate dateUntil) {
+  public void setDateUntil(OffsetDateTime dateUntil) {
     this.dateUntil = dateUntil;
   }
 
@@ -325,40 +324,42 @@ public class SalesReportDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SalesReportDto saleReport = (SalesReportDto) o;
-    return Objects.equals(this.id, saleReport.id)
-            && Objects.equals(this.outletName, saleReport.outletName)
-            && Objects.equals(this.totalOrdersNumber, saleReport.totalOrdersNumber)
-            && Objects.equals(this.publishedOrdersNumber, saleReport.publishedOrdersNumber)
-            && Objects.equals(this.paidOrdersNumber, saleReport.paidOrdersNumber)
-            && Objects.equals(this.unpaidOrdersNumber, saleReport.unpaidOrdersNumber)
-            && Objects.equals(this.partialPaidOrdersNumber, saleReport.partialPaidOrdersNumber)
-            && Objects.equals(this.closedOrdersNumber, saleReport.closedOrdersNumber)
-            && Objects.equals(this.totalSales, saleReport.totalSales)
-            && Objects.equals(this.ingredientsCost, saleReport.ingredientsCost)
-            && Objects.equals(this.totalRevenue, saleReport.totalRevenue)
-            && Objects.equals(this.dateFrom, saleReport.dateFrom)
-            && Objects.equals(this.dateUntil, saleReport.dateUntil);
+    SalesReportDto salesReport = (SalesReportDto) o;
+    return Objects.equals(this.id, salesReport.id)
+            && Objects.equals(this.outletName, salesReport.outletName)
+            && Objects.equals(this.totalOrderNumber, salesReport.totalOrderNumber)
+            && Objects.equals(this.publishedOrderNumber, salesReport.publishedOrderNumber)
+            && Objects.equals(this.paidOrderNumber, salesReport.paidOrderNumber)
+            && Objects.equals(this.unpaidOrderNumber, salesReport.unpaidOrderNumber)
+            && Objects.equals(this.partialPaidOrderNumber, salesReport.partialPaidOrderNumber)
+            && Objects.equals(this.closedOrderNumber, salesReport.closedOrderNumber)
+            && Objects.equals(this.totalSales, salesReport.totalSales)
+            && Objects.equals(this.ingredientsCost, salesReport.ingredientsCost)
+            && Objects.equals(this.totalRevenue, salesReport.totalRevenue)
+            && Objects.equals(this.dateFrom, salesReport.dateFrom)
+            && Objects.equals(this.dateUntil, salesReport.dateUntil);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, outletName, totalOrdersNumber, publishedOrdersNumber, paidOrdersNumber, unpaidOrdersNumber, partialPaidOrdersNumber, closedOrdersNumber, totalSales, ingredientsCost, totalRevenue, dateFrom, dateUntil);
+    return Objects.hash(id, outletName, totalOrderNumber, publishedOrderNumber, paidOrderNumber,
+            unpaidOrderNumber, partialPaidOrderNumber, closedOrderNumber, totalSales,
+            ingredientsCost, totalRevenue, dateFrom, dateUntil);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SaleReportDto {\n");
+    sb.append("class SalesReportDto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    outletName: ").append(toIndentedString(outletName)).append("\n");
-    sb.append("    totalOrdersNumber: ").append(toIndentedString(totalOrdersNumber)).append("\n");
-    sb.append("    publishedOrdersNumber: ").append(toIndentedString(publishedOrdersNumber)).append("\n");
-    sb.append("    paidOrdersNumber: ").append(toIndentedString(paidOrdersNumber)).append("\n");
-    sb.append("    unpaidOrdersNumber: ").append(toIndentedString(unpaidOrdersNumber)).append("\n");
-    sb.append("    partialPaidOrdersNumber: ").append(toIndentedString(partialPaidOrdersNumber)).append("\n");
-    sb.append("    closedOrdersNumber: ").append(toIndentedString(closedOrdersNumber)).append("\n");
+    sb.append("    totalOrderNumber: ").append(toIndentedString(totalOrderNumber)).append("\n");
+    sb.append("    publishedOrderNumber: ").append(toIndentedString(publishedOrderNumber)).append("\n");
+    sb.append("    paidOrderNumber: ").append(toIndentedString(paidOrderNumber)).append("\n");
+    sb.append("    unpaidOrderNumber: ").append(toIndentedString(unpaidOrderNumber)).append("\n");
+    sb.append("    partialPaidOrderNumber: ").append(toIndentedString(partialPaidOrderNumber)).append("\n");
+    sb.append("    closedOrderNumber: ").append(toIndentedString(closedOrderNumber)).append("\n");
     sb.append("    totalSales: ").append(toIndentedString(totalSales)).append("\n");
     sb.append("    ingredientsCost: ").append(toIndentedString(ingredientsCost)).append("\n");
     sb.append("    totalRevenue: ").append(toIndentedString(totalRevenue)).append("\n");

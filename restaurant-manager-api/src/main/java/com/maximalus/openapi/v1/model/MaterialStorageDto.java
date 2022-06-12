@@ -1,18 +1,21 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.StorageCategoryDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Information about one material in storage
  */
 @ApiModel(description = "Information about one material in storage")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class MaterialStorageDto   {
   @JsonProperty("id")
   private Long id;
@@ -21,10 +24,10 @@ public class MaterialStorageDto   {
   private String name;
 
   @JsonProperty("initialAmount")
-  private Long initialAmount;
+  private Integer initialAmount;
 
   @JsonProperty("currentAmount")
-  private Long currentAmount;
+  private Integer currentAmount;
 
   @JsonProperty("unitName")
   private String unitName;
@@ -78,7 +81,7 @@ public class MaterialStorageDto   {
     this.name = name;
   }
 
-  public MaterialStorageDto initialAmount(Long initialAmount) {
+  public MaterialStorageDto initialAmount(Integer initialAmount) {
     this.initialAmount = initialAmount;
     return this;
   }
@@ -90,15 +93,15 @@ public class MaterialStorageDto   {
   @ApiModelProperty(example = "186", value = "")
 
 
-  public Long getInitialAmount() {
+  public Integer getInitialAmount() {
     return initialAmount;
   }
 
-  public void setInitialAmount(Long initialAmount) {
+  public void setInitialAmount(Integer initialAmount) {
     this.initialAmount = initialAmount;
   }
 
-  public MaterialStorageDto currentAmount(Long currentAmount) {
+  public MaterialStorageDto currentAmount(Integer currentAmount) {
     this.currentAmount = currentAmount;
     return this;
   }
@@ -110,11 +113,11 @@ public class MaterialStorageDto   {
   @ApiModelProperty(example = "186", value = "")
 
 
-  public Long getCurrentAmount() {
+  public Integer getCurrentAmount() {
     return currentAmount;
   }
 
-  public void setCurrentAmount(Long currentAmount) {
+  public void setCurrentAmount(Integer currentAmount) {
     this.currentAmount = currentAmount;
   }
 

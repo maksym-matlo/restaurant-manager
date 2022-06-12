@@ -1,19 +1,22 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.RoleDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * User credentials info
  */
 @ApiModel(description = "User credentials info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class CredentialDto   {
   @JsonProperty("id")
   private Long id;
@@ -31,10 +34,10 @@ public class CredentialDto   {
   private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public CredentialDto id(Long id) {
     this.id = id;
@@ -137,7 +140,7 @@ public class CredentialDto   {
     this.isDeleted = isDeleted;
   }
 
-  public CredentialDto creationDate(LocalDate creationDate) {
+  public CredentialDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -150,15 +153,15 @@ public class CredentialDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public CredentialDto changingDate(LocalDate changingDate) {
+  public CredentialDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -171,11 +174,11 @@ public class CredentialDto   {
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 
