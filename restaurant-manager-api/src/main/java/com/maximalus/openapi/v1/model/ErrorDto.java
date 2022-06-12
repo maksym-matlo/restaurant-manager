@@ -1,22 +1,25 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.time.OffsetDateTime;
-import java.util.Map;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Error description
  */
 @ApiModel(description = "Error description")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
-public class Error {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
+public class ErrorDto   {
   @JsonProperty("timestamp")
   private OffsetDateTime timestamp;
 
@@ -36,7 +39,7 @@ public class Error {
   @Valid
   private Map<String, Object> additional = null;
 
-  public Error timestamp(OffsetDateTime timestamp) {
+  public ErrorDto timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -58,7 +61,7 @@ public class Error {
     this.timestamp = timestamp;
   }
 
-  public Error status(Integer status) {
+  public ErrorDto status(Integer status) {
     this.status = status;
     return this;
   }
@@ -79,16 +82,16 @@ public class Error {
     this.status = status;
   }
 
-  public Error errorCode(String errorCode) {
+  public ErrorDto errorCode(String errorCode) {
     this.errorCode = errorCode;
     return this;
   }
 
   /**
-   * Business error code that allows using 'additional' or redefine 'message' 
+   * Business error code that allows using 'additional' or redefine 'message'
    * @return errorCode
   */
-  @ApiModelProperty(example = "VALIDATION_ERROR", value = "Business error code that allows using 'additional' or redefine 'message' ")
+  @ApiModelProperty(example = "VALIDATION_ERROR", value = "Business error code that allows using 'additional' or redefine 'message'")
 
 
   public String getErrorCode() {
@@ -99,7 +102,7 @@ public class Error {
     this.errorCode = errorCode;
   }
 
-  public Error message(String message) {
+  public ErrorDto message(String message) {
     this.message = message;
     return this;
   }
@@ -120,7 +123,7 @@ public class Error {
     this.message = message;
   }
 
-  public Error path(String path) {
+  public ErrorDto path(String path) {
     this.path = path;
     return this;
   }
@@ -141,7 +144,7 @@ public class Error {
     this.path = path;
   }
 
-  public Error additional(Map<String, Object> additional) {
+  public ErrorDto additional(Map<String, Object> additional) {
     this.additional = additional;
     return this;
   }
@@ -170,11 +173,12 @@ public class Error {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
+    ErrorDto error = (ErrorDto) o;
     return Objects.equals(this.timestamp, error.timestamp)
             && Objects.equals(this.status, error.status)
             && Objects.equals(this.errorCode, error.errorCode)
-            && Objects.equals(this.message, error.message) && Objects.equals(this.path, error.path)
+            && Objects.equals(this.message, error.message)
+            && Objects.equals(this.path, error.path)
             && Objects.equals(this.additional, error.additional);
   }
 

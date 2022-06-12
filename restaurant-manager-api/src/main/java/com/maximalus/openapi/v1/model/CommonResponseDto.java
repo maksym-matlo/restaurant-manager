@@ -1,18 +1,21 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
-import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
- * CommonResponseDto
+ * CommonResponse
  */
-@ApiModel(description = "CommonResponseDto")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
-public class CommonResponseDto {
+@ApiModel(description = "CommonResponse")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
+public class CommonResponseDto   {
   @JsonProperty("responseId")
   private Long responseId;
 
@@ -68,9 +71,9 @@ public class CommonResponseDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CommonResponseDto requestCommonResponseDto = (CommonResponseDto) o;
-    return Objects.equals(this.responseId, requestCommonResponseDto.responseId)
-            && Objects.equals(this.status, requestCommonResponseDto.status);
+    CommonResponseDto commonResponse = (CommonResponseDto) o;
+    return Objects.equals(this.responseId, commonResponse.responseId)
+            && Objects.equals(this.status, commonResponse.status);
   }
 
   @Override
@@ -81,7 +84,7 @@ public class CommonResponseDto {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestResponseDto {\n");
+    sb.append("class CommonResponseDto {\n");
     
     sb.append("    responseId: ").append(toIndentedString(responseId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

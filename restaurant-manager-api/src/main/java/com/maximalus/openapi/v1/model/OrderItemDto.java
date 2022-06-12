@@ -1,17 +1,20 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
-import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * Order item info
  */
 @ApiModel(description = "Order item info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class OrderItemDto   {
   @JsonProperty("id")
   private Long id;
@@ -19,8 +22,14 @@ public class OrderItemDto   {
   @JsonProperty("name")
   private String name;
 
+  @JsonProperty("pricePerUnit")
+  private Double pricePerUnit;
+
   @JsonProperty("orderedAmount")
-  private Long orderedAmount;
+  private Integer orderedAmount;
+
+  @JsonProperty("comment")
+  private String comment;
 
   @JsonProperty("totalCost")
   private Double totalCost;
@@ -65,7 +74,27 @@ public class OrderItemDto   {
     this.name = name;
   }
 
-  public OrderItemDto orderedAmount(Long orderedAmount) {
+  public OrderItemDto pricePerUnit(Double pricePerUnit) {
+    this.pricePerUnit = pricePerUnit;
+    return this;
+  }
+
+  /**
+   * Get pricePerUnit
+   * @return pricePerUnit
+  */
+  @ApiModelProperty(example = "1200.00", value = "")
+
+
+  public Double getPricePerUnit() {
+    return pricePerUnit;
+  }
+
+  public void setPricePerUnit(Double pricePerUnit) {
+    this.pricePerUnit = pricePerUnit;
+  }
+
+  public OrderItemDto orderedAmount(Integer orderedAmount) {
     this.orderedAmount = orderedAmount;
     return this;
   }
@@ -77,12 +106,32 @@ public class OrderItemDto   {
   @ApiModelProperty(example = "1", value = "")
 
 
-  public Long getOrderedAmount() {
+  public Integer getOrderedAmount() {
     return orderedAmount;
   }
 
-  public void setOrderedAmount(Long orderedAmount) {
+  public void setOrderedAmount(Integer orderedAmount) {
     this.orderedAmount = orderedAmount;
+  }
+
+  public OrderItemDto comment(String comment) {
+    this.comment = comment;
+    return this;
+  }
+
+  /**
+   * Get comment
+   * @return comment
+  */
+  @ApiModelProperty(example = "Some comment", value = "")
+
+
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   public OrderItemDto totalCost(Double totalCost) {
@@ -117,13 +166,15 @@ public class OrderItemDto   {
     OrderItemDto orderItem = (OrderItemDto) o;
     return Objects.equals(this.id, orderItem.id)
             && Objects.equals(this.name, orderItem.name)
+            && Objects.equals(this.pricePerUnit, orderItem.pricePerUnit)
             && Objects.equals(this.orderedAmount, orderItem.orderedAmount)
+            && Objects.equals(this.comment, orderItem.comment)
             && Objects.equals(this.totalCost, orderItem.totalCost);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, orderedAmount, totalCost);
+    return Objects.hash(id, name, pricePerUnit, orderedAmount, comment, totalCost);
   }
 
   @Override
@@ -133,7 +184,9 @@ public class OrderItemDto   {
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    pricePerUnit: ").append(toIndentedString(pricePerUnit)).append("\n");
     sb.append("    orderedAmount: ").append(toIndentedString(orderedAmount)).append("\n");
+    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    totalCost: ").append(toIndentedString(totalCost)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -1,19 +1,21 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Info about stage of order lifecycle
  */
 @ApiModel(description = "Info about stage of order lifecycle")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class OrderStatusRecordDto   {
   @JsonProperty("id")
   private Long id;
@@ -22,7 +24,10 @@ public class OrderStatusRecordDto   {
   private String orderStatus;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
+
+  @JsonProperty("changingDate")
+  private OffsetDateTime changingDate;
 
   public OrderStatusRecordDto id(Long id) {
     this.id = id;
@@ -64,7 +69,7 @@ public class OrderStatusRecordDto   {
     this.orderStatus = orderStatus;
   }
 
-  public OrderStatusRecordDto creationDate(LocalDate creationDate) {
+  public OrderStatusRecordDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -77,12 +82,33 @@ public class OrderStatusRecordDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
+  }
+
+  public OrderStatusRecordDto changingDate(OffsetDateTime changingDate) {
+    this.changingDate = changingDate;
+    return this;
+  }
+
+  /**
+   * Get changingDate
+   * @return changingDate
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public OffsetDateTime getChangingDate() {
+    return changingDate;
+  }
+
+  public void setChangingDate(OffsetDateTime changingDate) {
+    this.changingDate = changingDate;
   }
 
 
@@ -97,12 +123,13 @@ public class OrderStatusRecordDto   {
     OrderStatusRecordDto orderStatusRecord = (OrderStatusRecordDto) o;
     return Objects.equals(this.id, orderStatusRecord.id)
             && Objects.equals(this.orderStatus, orderStatusRecord.orderStatus)
-            && Objects.equals(this.creationDate, orderStatusRecord.creationDate);
+            && Objects.equals(this.creationDate, orderStatusRecord.creationDate)
+            && Objects.equals(this.changingDate, orderStatusRecord.changingDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, orderStatus, creationDate);
+    return Objects.hash(id, orderStatus, creationDate, changingDate);
   }
 
   @Override
@@ -113,6 +140,7 @@ public class OrderStatusRecordDto   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
+    sb.append("    changingDate: ").append(toIndentedString(changingDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

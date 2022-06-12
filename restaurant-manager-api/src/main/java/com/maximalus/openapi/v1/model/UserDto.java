@@ -1,20 +1,25 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.CredentialDto;
+import com.maximalus.openapi.v1.model.OrderDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * User info
  */
 @ApiModel(description = "User info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class UserDto   {
   @JsonProperty("id")
   private Long id;
@@ -35,14 +40,14 @@ public class UserDto   {
   @Valid
   private List<OrderDto> orders = null;
 
-  @JsonProperty("deleted")
-  private Boolean deleted;
+  @JsonProperty("isDeleted")
+  private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public UserDto id(Long id) {
     this.id = id;
@@ -167,7 +172,7 @@ public class UserDto   {
   }
 
   public UserDto isDeleted(Boolean isDeleted) {
-    this.deleted = deleted;
+    this.isDeleted = isDeleted;
     return this;
   }
 
@@ -178,15 +183,15 @@ public class UserDto   {
   @ApiModelProperty(example = "false", value = "")
 
 
-  public Boolean isDeleted() {
-    return deleted;
+  public Boolean isIsDeleted() {
+    return isDeleted;
   }
 
-  public void setIsDeleted(Boolean deleted) {
-    this.deleted = deleted;
+  public void setIsDeleted(Boolean isDeleted) {
+    this.isDeleted = isDeleted;
   }
 
-  public UserDto creationDate(LocalDate creationDate) {
+  public UserDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -199,15 +204,15 @@ public class UserDto   {
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public UserDto changingDate(LocalDate changingDate) {
+  public UserDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -220,11 +225,11 @@ public class UserDto   {
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 
@@ -244,14 +249,15 @@ public class UserDto   {
             && Objects.equals(this.credential, user.credential)
             && Objects.equals(this.outletName, user.outletName)
             && Objects.equals(this.orders, user.orders)
-            && Objects.equals(this.deleted, user.deleted)
+            && Objects.equals(this.isDeleted, user.isDeleted)
             && Objects.equals(this.creationDate, user.creationDate)
             && Objects.equals(this.changingDate, user.changingDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, credential, outletName, orders, deleted, creationDate, changingDate);
+    return Objects.hash(id, firstName, lastName, credential, outletName, orders, isDeleted,
+            creationDate, changingDate);
   }
 
   @Override
@@ -265,7 +271,7 @@ public class UserDto   {
     sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
     sb.append("    outletName: ").append(toIndentedString(outletName)).append("\n");
     sb.append("    orders: ").append(toIndentedString(orders)).append("\n");
-    sb.append("    isDeleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    isDeleted: ").append(toIndentedString(isDeleted)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    changingDate: ").append(toIndentedString(changingDate)).append("\n");
     sb.append("}");

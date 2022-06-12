@@ -38,6 +38,9 @@ public class OrderItem{
     private Order order;
 
     @Column(nullable = false)
+    private BigDecimal pricePerUnit;
+
+    @Column(nullable = false)
     private int orderedAmount;
 
     @Column(precision = 10, scale = 2)
@@ -49,13 +52,19 @@ public class OrderItem{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OrderItem)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return orderedAmount == orderItem.orderedAmount && Objects.equals(id, orderItem.id) && Objects.equals(menuItem, orderItem.menuItem) && Objects.equals(order, orderItem.order) && Objects.equals(totalCost, orderItem.totalCost) && Objects.equals(comment, orderItem.comment);
+        return orderedAmount == orderItem.orderedAmount
+                && Objects.equals(id, orderItem.id)
+                && Objects.equals(menuItem, orderItem.menuItem)
+                && Objects.equals(order, orderItem.order)
+                && Objects.equals(pricePerUnit, orderItem.pricePerUnit)
+                && Objects.equals(totalCost, orderItem.totalCost)
+                && Objects.equals(comment, orderItem.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, menuItem, order, orderedAmount, totalCost, comment);
+        return Objects.hash(id, menuItem, order, pricePerUnit, orderedAmount, totalCost, comment);
     }
 }

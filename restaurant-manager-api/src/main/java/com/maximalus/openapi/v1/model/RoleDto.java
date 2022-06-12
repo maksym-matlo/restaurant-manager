@@ -1,19 +1,24 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.CredentialDto;
+import com.maximalus.openapi.v1.model.PermissionDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * User role info
  */
 @ApiModel(description = "User role info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class RoleDto   {
   @JsonProperty("id")
   private Long id;
@@ -27,7 +32,7 @@ public class RoleDto   {
 
   @JsonProperty("permissions")
   @Valid
-  private List<Permission> permissions = null;
+  private List<PermissionDto> permissions = null;
 
   public RoleDto id(Long id) {
     this.id = id;
@@ -90,7 +95,7 @@ public class RoleDto   {
     this.credentials = credentials;
   }
 
-  public RoleDto permissions(List<Permission> permissions) {
+  public RoleDto permissions(List<PermissionDto> permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -103,11 +108,11 @@ public class RoleDto   {
 
   @Valid
 
-  public List<Permission> getPermissions() {
+  public List<PermissionDto> getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(List<Permission> permissions) {
+  public void setPermissions(List<PermissionDto> permissions) {
     this.permissions = permissions;
   }
 

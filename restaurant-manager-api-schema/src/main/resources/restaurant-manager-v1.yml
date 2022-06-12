@@ -91,7 +91,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/UserDto'
+              $ref: '#/components/schemas/User'
       responses:
         '200':
           description: Successful response
@@ -132,7 +132,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserDto'
+                $ref: '#/components/schemas/User'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -157,14 +157,14 @@ paths:
           description: Id for user updating
           required: true
           schema:
-            type: number
+            type: integer
             format: int64
       requestBody:
         description: Callback payload
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/UserDto'
+              $ref: '#/components/schemas/User'
       responses:
         '200':
           description: Successful response
@@ -196,7 +196,7 @@ paths:
           description: Id for user updating
           required: true
           schema:
-            type: number
+            type: integer
             format: int64
       responses:
         '200':
@@ -269,14 +269,14 @@ components:
       properties:
         total:
           type: integer
-          format: int64
+          format: int32
           example: 1000
         data:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: '#/components/schemas/User'
 
-    UserDto:
+    User:
       type: object
       description: User info
       properties:
@@ -291,23 +291,23 @@ components:
           type: string
           example: Mondel
         credential:
-          $ref: '#/components/schemas/CredentialDto'
+          $ref: '#/components/schemas/Credential'
         outletName:
           type: string
           example: LaSpiga
         orders:
           type: array
           items:
-            $ref: '#/components/schemas/OrderDto'
+            $ref: '#/components/schemas/Order'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
       example:
         userId: 186
         firstName: David
@@ -317,7 +317,7 @@ components:
         creationDate: 2020-5-19
         changingDate: 2020-6-20
 
-    CredentialDto:
+    Credential:
       type: object
       description: User credentials info
       properties:
@@ -332,16 +332,16 @@ components:
           type: string
           format: password
         role:
-          $ref: '#/components/schemas/RoleDto'
+          $ref: '#/components/schemas/Role'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
       example:
         id: 186
         username: herbert_stevenson
@@ -349,7 +349,7 @@ components:
         creationDate: 2020-5-19
         changingDate: 2020-6-20
 
-    RoleDto:
+    Role:
       type: object
       description: User role info
       properties:
@@ -363,7 +363,7 @@ components:
         credentials:
           type: array
           items:
-            $ref: '#/components/schemas/CredentialDto'
+            $ref: '#/components/schemas/Credential'
         permissions:
           type: array
           items:
@@ -372,7 +372,7 @@ components:
         id: 186
         name: accounting_specialist
 
-    OutletDto:
+    Outlet:
       type: object
       description: Outlet info
       properties:
@@ -386,23 +386,23 @@ components:
         orders:
           type: array
           items:
-            $ref: '#/components/schemas/OrderDto'
+            $ref: '#/components/schemas/Order'
         users:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: '#/components/schemas/User'
         ingredientStorage:
-          $ref: '#/components/schemas/IngredientStorageDto'
+          $ref: '#/components/schemas/IngredientStorage'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
           example: 2020-5-19
         changingDate:
           type: string
-          format: date
+          format: date-time
           example: 2020-6-20
       example:
         id: 186
@@ -411,7 +411,7 @@ components:
         creationDate: 2020-5-19
         changingDate: 2020-6-20
 
-    OrderDto:
+    Order:
       type: object
       description: Order info
       properties:
@@ -425,19 +425,19 @@ components:
         orderItems:
           type: array
           items:
-            $ref: '#/components/schemas/OrderItemDto'
+            $ref: '#/components/schemas/OrderItem'
         customerNumber:
           type: integer
-          format: int64
+          format: int32
           example: 186
         tableNumber:
           type: integer
-          format: int64
+          format: int32
           example: 16
         companyDiscount:
-          $ref: '#/components/schemas/CompanyDiscountDto'
+          $ref: '#/components/schemas/CompanyDiscount'
         itemDiscount:
-          $ref: '#/components/schemas/ItemDiscountDto'
+          $ref: '#/components/schemas/ItemDiscount'
         totalCost:
           type: number
           format: double
@@ -445,16 +445,16 @@ components:
         orderStatusRecords:
           type: array
           items:
-            $ref: '#/components/schemas/OrderStatusRecordDto'
+            $ref: '#/components/schemas/OrderStatusRecord'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
       example:
         id: 2589
         userInfo: David Valter - Waiter
@@ -465,7 +465,7 @@ components:
         createdDate: 2020-12-5
         changingDate: 2020-12-19
 
-    OrderItemDto:
+    OrderItem:
       type: object
       description: Order item info
       properties:
@@ -476,10 +476,17 @@ components:
         name:
           type: string
           example: La Spiga
+        pricePerUnit:
+          type: number
+          format: double
+          example: "1200.00"
         orderedAmount:
           type: integer
-          format: int64
+          format: int32
           example: 1
+        comment:
+          type: string
+          example: Some comment
         totalCost:
           type: number
           format: double
@@ -490,7 +497,7 @@ components:
         orderedAmount: 2
         totalCost: 35
 
-    OrderStatusRecordDto:
+    OrderStatusRecord:
       type: object
       description: Info about stage of order lifecycle
       properties:
@@ -502,13 +509,16 @@ components:
           type: string
         creationDate:
           type: string
-          format: date
+          format: date-time
+        changingDate:
+          type: string
+          format: date-time
       example:
         id: 1
         orderStatus: CREATED
         creationDate: 2020-1-15 12:25:48
 
-    CompanyDiscountDto:
+    CompanyDiscount:
       type: object
       description: Info about company discount
       properties:
@@ -521,19 +531,19 @@ components:
           example: Microsoft
         discountPercentage:
           type: integer
-          format: int64
+          format: int32
           example: 18
         discountProof:
-          $ref: '#/components/schemas/DiscountProofDto'
+          $ref: '#/components/schemas/DiscountProof'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
       example:
         id: 12
         companyName: Microsoft
@@ -542,7 +552,7 @@ components:
         creationDate: 2020-5-14
         changingDate: 2020-8-15
 
-    ItemDiscountDto:
+    ItemDiscount:
       type: object
       description: Info about item discount
       properties:
@@ -555,23 +565,23 @@ components:
           example: Cesar salad
         amountOfProduct:
           type: integer
-          format: int64
+          format: int32
           example: 2
         discountPercentage:
           type: integer
-          format: int64
+          format: int32
           example: 18
         discountProof:
-          $ref: '#/components/schemas/DiscountProofDto'
+          $ref: '#/components/schemas/DiscountProof'
         isDeleted:
           type: boolean
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
       example:
         id: 23
         menuItemName: Cesar salad
@@ -581,7 +591,7 @@ components:
         creationDate: 2020-9-12
         changingDate: 2020-9-15
 
-    DiscountProofDto:
+    DiscountProof:
       type: object
       description: Info about discount proof
       properties:
@@ -596,12 +606,12 @@ components:
           example: false
         creationDate:
           type: string
-          format: date
+          format: date-time
         changingDate:
           type: string
-          format: date
+          format: date-time
 
-    IngredientDto:
+    Ingredient:
       type: object
       description: Informaation about ingredient
       properties:
@@ -624,7 +634,7 @@ components:
         unitName: Kilogram
         ingredientGroupName: Meat
 
-    IngredientGroupDto:
+    IngredientGroup:
       type: object
       description: Info about group of ingredients
       properties:
@@ -638,12 +648,12 @@ components:
         ingredients:
           type: array
           items:
-            $ref: '#/components/schemas/IngredientDto'
+            $ref: '#/components/schemas/Ingredient'
       example:
         id: 123
         name: Meat
 
-    MenuItemDto:
+    MenuItem:
       type: object
       description: Information about item from menu
       properties:
@@ -660,7 +670,7 @@ components:
           example: "120.00"
         markupPercentage:
           type: integer
-          format: int64
+          format: int32
           example: 18
         purchasePricePerUnit:
           type: number
@@ -668,7 +678,7 @@ components:
           example: "120.00"
         availableQuantity:
           type: integer
-          format: int64
+          format: int32
           example: 186
         outletName:
           type: string
@@ -676,11 +686,11 @@ components:
         recipes:
           type: array
           items:
-            $ref: '#/components/schemas/RecipeDto'
+            $ref: '#/components/schemas/Recipe'
         itemDiscount:
-          $ref: '#/components/schemas/ItemDiscountDto'
+          $ref: '#/components/schemas/ItemDiscount'
         menuItemGroup:
-          $ref: '#/components/schemas/MenuItemGroupDto'
+          $ref: '#/components/schemas/MenuItemGroup'
         menuItemStatus:
           type: string
           example: IN_STOCK
@@ -694,7 +704,7 @@ components:
         outletName: LaSpiga
         menuItemStatus: IN_STOCK
 
-    MenuItemShortInfoDto:
+    MenuItemShortInfo:
       type: object
       description: Short info about menu item specially for menu sheet
       properties:
@@ -706,9 +716,9 @@ components:
           format: double
           example: "120.00"
         menuItemGroup:
-          $ref: '#/components/schemas/MenuItemGroupDto'
+          $ref: '#/components/schemas/MenuItemGroup'
 
-    MenuItemGroupDto:
+    MenuItemGroup:
       type: object
       description: Info about menu item groups
       properties:
@@ -722,9 +732,9 @@ components:
         menuItems:
           type: array
           items:
-            $ref: '#/components/schemas/MenuItemShortInfoDto'
+            $ref: '#/components/schemas/MenuItemShortInfo'
 
-    RecipeDto:
+    Recipe:
       type: object
       description: Info about usage of 1 ingredient for different menuItems
       properties:
@@ -733,17 +743,17 @@ components:
           format: int64
           example: 186
         ingredient:
-          $ref: '#/components/schemas/IngredientDto'
+          $ref: '#/components/schemas/Ingredient'
         menuItem:
-          $ref: '#/components/schemas/MenuItemDto'
+          $ref: '#/components/schemas/MenuItem'
         outlet:
-          $ref: '#/components/schemas/OutletDto'
+          $ref: '#/components/schemas/Outlet'
         amountOfIngredient:
           type: string
           format: double
           example: 1123.00
 
-    GeneralReportDto:
+    GeneralReport:
       type: object
       description: Report with general info
       properties:
@@ -756,22 +766,22 @@ components:
           example: La Spiga
         numberOfOrders:
           type: integer
-          format: int64
+          format: int32
           example: 820
         numberOfCustomers:
           type: integer
-          format: int64
+          format: int32
           example: 1860
         numberOfUnpaidOrders:
           type: integer
-          format: int64
+          format: int32
           example: 47
         dateFrom:
           type: string
-          format: date
+          format: date-time
         dateUntil:
           type: string
-          format: date
+          format: date-time
       example:
         id: 187
         outletName: La Spiga
@@ -781,7 +791,7 @@ components:
         dateFrom: 2020-2-10 12:25:48
         dateUntil: 2020-2-25 12:25:48
 
-    SalesReportDto:
+    SalesReport:
       type: object
       description: Info with info about sales in concrete outlet
       properties:
@@ -792,29 +802,29 @@ components:
         outletName:
           type: string
           example: La Spiga
-        totalOrdersNumber:
+        totalOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
-        publishedOrdersNumber:
+        publishedOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
-        paidOrdersNumber:
+        paidOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
-        unpaidOrdersNumber:
+        unpaidOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
-        partialPaidOrdersNumber:
+        partialPaidOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
-        closedOrdersNumber:
+        closedOrderNumber:
           type: integer
-          format: int64
+          format: int32
           example: 820
         totalSales:
           type: string
@@ -830,26 +840,26 @@ components:
           example: 1123.00
         dateFrom:
           type: string
-          format: date
+          format: date-time
         dateUntil:
           type: string
-          format: date
+          format: date-time
       example:
         id: 123
         outletName: La Spiga
-        totalOrdersNumber: 1250
-        publishedOrdersNumber: 1204
-        paidOrdersNumber: 1240
-        unpaidOrdersNumber: 10
-        partialPaidOrdersNumber: 0
-        closedOrdersNumber: 1200
+        totalOrderNumber: 1250
+        publishedOrderNumber: 1204
+        paidOrderNumber: 1240
+        unpaidOrderNumber: 10
+        partialPaidOrderNumber: 0
+        closedOrderNumber: 1200
         totalSales: 12586.00
         ingredientsCost: 2586.00
         totalRevenue: 10000.00
         dateFrom: 2020-2-10 12:25:48
         dateUntil: 2020-2-25 12:25:48
 
-    IngredientStorageDto:
+    IngredientStorage:
       type: object
       description: Information about one ingredient in storage
       properties:
@@ -880,12 +890,12 @@ components:
           format: double
           example: 1.50
         storageCategory:
-          $ref: '#/components/schemas/StorageCategoryDto'
+          $ref: '#/components/schemas/StorageCategory'
         outletName:
           type: string
           example: La Spiga
 
-    MaterialStorageDto:
+    MaterialStorage:
       type: object
       description: Information about one material in storage
       properties:
@@ -898,11 +908,11 @@ components:
           example: Soap
         initialAmount:
           type: integer
-          format: int64
+          format: int32
           example: 186
         currentAmount:
           type: integer
-          format: int64
+          format: int32
           example: 186
         unitName:
           type: string
@@ -916,7 +926,7 @@ components:
           format: double
           example: 1.50
         storageCategory:
-          $ref: '#/components/schemas/StorageCategoryDto'
+          $ref: '#/components/schemas/StorageCategory'
       example:
         id: 12
         name: Soap
@@ -927,7 +937,7 @@ components:
         costPerUnit: 12
         storageCategory: Soap
 
-    StorageCategoryDto:
+    StorageCategory:
       type: object
       description: Info about storage categories
       properties:

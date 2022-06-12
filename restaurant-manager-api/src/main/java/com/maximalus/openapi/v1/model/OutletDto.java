@@ -1,20 +1,26 @@
 package com.maximalus.openapi.v1.model;
 
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.maximalus.openapi.v1.model.IngredientStorageDto;
+import com.maximalus.openapi.v1.model.OrderDto;
+import com.maximalus.openapi.v1.model.UserDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.*;
 
 /**
  * Outlet info
  */
 @ApiModel(description = "Outlet info")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-03T11:47:28.437270400+03:00[Europe/Helsinki]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-12T15:05:08.452693200+03:00[Europe/Helsinki]")
 public class OutletDto   {
   @JsonProperty("id")
   private Long id;
@@ -37,10 +43,10 @@ public class OutletDto   {
   private Boolean isDeleted;
 
   @JsonProperty("creationDate")
-  private LocalDate creationDate;
+  private OffsetDateTime creationDate;
 
   @JsonProperty("changingDate")
-  private LocalDate changingDate;
+  private OffsetDateTime changingDate;
 
   public OutletDto id(Long id) {
     this.id = id;
@@ -165,7 +171,7 @@ public class OutletDto   {
     this.isDeleted = isDeleted;
   }
 
-  public OutletDto creationDate(LocalDate creationDate) {
+  public OutletDto creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -174,19 +180,19 @@ public class OutletDto   {
    * Get creationDate
    * @return creationDate
   */
-  @ApiModelProperty(example = "Tue May 19 03:00:00 EEST 2020", value = "")
+  @ApiModelProperty(value = "")
 
   @Valid
 
-  public LocalDate getCreationDate() {
+  public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(LocalDate creationDate) {
+  public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
 
-  public OutletDto changingDate(LocalDate changingDate) {
+  public OutletDto changingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
     return this;
   }
@@ -195,15 +201,15 @@ public class OutletDto   {
    * Get changingDate
    * @return changingDate
   */
-  @ApiModelProperty(example = "Sat Jun 20 03:00:00 EEST 2020", value = "")
+  @ApiModelProperty(value = "")
 
   @Valid
 
-  public LocalDate getChangingDate() {
+  public OffsetDateTime getChangingDate() {
     return changingDate;
   }
 
-  public void setChangingDate(LocalDate changingDate) {
+  public void setChangingDate(OffsetDateTime changingDate) {
     this.changingDate = changingDate;
   }
 
